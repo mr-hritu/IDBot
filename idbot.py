@@ -79,7 +79,7 @@ id: `-100{channel.chats[0].id}`
 @app.on_message(filters.command(["start"]))
 def start_handler(client: "Client", message: "types.Message"):
     chat_id = message.chat.id
-    client.send_message(chat_id, "Welcome to Benny's ID bot.")
+    client.send_message(chat_id, "Welcome to @Private_Bot's ID bot.\n✓ Dev : @Prime_Hritu")
 
 
 @app.on_message(filters.command(["help"]))
