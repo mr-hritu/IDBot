@@ -79,15 +79,14 @@ id: `-100{channel.chats[0].id}`
 @app.on_message(filters.command(["start"]))
 def start_handler(client: "Client", message: "types.Message"):
     chat_id = message.chat.id
-    client.send_message(chat_id, "Welcome to @Private_Bot's ID bot.\n✓ Dev : @Prime_Hritu")
+    me = get_user_detail(message.from_user)
+    client.send_message(chat_id, f"Welcome to @Private_Bot's ID bot.\n✓ Dev : @Prime_Hritu\n\n★ Your I'd : {me}\n\nTry /help")
 
 
 @app.on_message(filters.command(["help"]))
 def help_handler(client: "Client", message: "types.Message"):
     chat_id = message.chat.id
-    text = """Forward messages, send username, use /getme to get your account's detail.\n
-    Opensource at GitHub: https://github.com/tgbot-collection/IDBot
-    """
+    text = """Forward messages, send username, use /getme to get your account's details"""
     client.send_message(chat_id, text)
 
 
