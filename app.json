@@ -1,6 +1,6 @@
 {
-    "name": "UltraUX Mention Bot",
-    "description": "A simple/useful mention bot for telegram.",
+    "name": "Idbot",
+    "description": "A id bot for telegram.",
     "logo": "https://telegra.ph/file/e0d298122a77298661478.jpg",
     "env": {
         "TOKEN": {
@@ -9,7 +9,7 @@
         "APP_ID": {
             "description": "Get this value from my.telegram.org! Please do not steal."
         },
-        "API_HASH": {
+        "APP_HASH": {
             "description": "Get this value from my.telegram.org! Please do not steal."
         }
     },
