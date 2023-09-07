@@ -10,6 +10,9 @@ import traceback
 from typing import Any, Union
 
 from pyrogram import Client, filters, types, raw
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
+from pyrogram.errors import UserBannedInChannel, UserNotParticipant
 from tgbot_ping import get_runtime
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(filename)s [%(levelname)s]: %(message)s')
@@ -75,6 +78,20 @@ title: `{channel.chats[0].title}`
 id: `-100{channel.chats[0].id}`
     """
 
+@app.on_message(filters.text & filters.private & filters.incoming)
+async def fore(c, m):
+      try:
+        chat = await c.get_chat_member(-1001785446911, m.from_user.id)
+        if chat.status=="kicked":
+           await c.send_message(chat_id=m.chat.id, text="You are Banned ☹️\n\n📝 If u think this is an ERROR message in @Privates_Chats", reply_to_message_id=m.id)
+           m.stop_propagation()
+      except UserBannedInChannel:
+         return await c.send_message(chat_id=m.chat.id, text="Hai you made a mistake so you are banned from channel so you are banned from me too 😜")
+      except UserNotParticipant:
+          button = [[InlineKeyboardButton('Updates Channel 🇮🇳', url='https://t.me/Private_Bots')]]
+          markup = InlineKeyboardMarkup(button)
+          return await c.send_message(chat_id=m.chat.id, text="""Hai bro,\n\nYou must join my channel for using me.\n\nPress this button to join now 👇""", reply_markup=markup)
+      m.continue_propagation()
 
 @app.on_message(filters.command(["start"]))
 def start_handler(client: "Client", message: "types.Message"):
